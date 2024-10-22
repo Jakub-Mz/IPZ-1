@@ -1,0 +1,417 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/GalvanizedMetal.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Rubber.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.18754369030447954 0.0744113865177128 0.9794336678833788 2.1759019268200106
+  position 7.256821450203174 -7.7248390936195435 5.069236771026185
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 50 50
+  floorTileSize 5 5
+}
+Robot {
+  translation 0.15064 2.8252 0.15
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.3 0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+          acceleration 10
+          maxTorque 100
+        }
+        PositionSensor {
+        }
+      ]
+      endPoint Solid {
+        translation 0.3 0.200013 6.253759999974957e-06
+        rotation -0.9999999999998703 3.601716101736719e-07 3.6005724599886707e-07 4.712071375380367
+        children [
+          DEF Wheel Shape {
+            appearance Rubber {
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.15
+            }
+          }
+        ]
+        name "wheel1"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.3 -0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+          acceleration 10
+          maxTorque 100
+        }
+        PositionSensor {
+        }
+      ]
+      endPoint Solid {
+        translation 0.3 -0.20002799999999998 6.253769999999772e-06
+        rotation -0.9999999999998701 -3.6027964529186784e-07 -3.6040325985937447e-07 4.712732064457683
+        children [
+          USE Wheel
+        ]
+        name "wheel2"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.3 0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+          acceleration 10
+          maxTorque 100
+        }
+        PositionSensor {
+        }
+      ]
+      endPoint Solid {
+        translation -0.3 0.2 6.253750000055739e-06
+        rotation -0.9999999999998702 3.6007795436994685e-07 3.603647096269362e-07 4.713184995270961
+        children [
+          USE Wheel
+        ]
+        name "wheel3"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.3 -0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+          acceleration 10
+          maxTorque 100
+        }
+        PositionSensor {
+        }
+      ]
+      endPoint Solid {
+        translation -0.3 -0.200013 6.253760000031631e-06
+        rotation -0.9999999999998701 -3.601716346272191e-07 -3.604586634357764e-07 4.7131856191674775
+        children [
+          USE Wheel
+        ]
+        name "wheel4"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    DEF Hull Shape {
+      appearance GalvanizedMetal {
+      }
+      geometry Box {
+        size 1 0.3 0.15
+      }
+    }
+  ]
+  name "robot_simple"
+  boundingObject USE Hull
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "SimpleVechicle"
+}
+Robot {
+  translation 0.2 1.06 0.25
+  children [
+    Hinge2Joint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.3 0.15 0
+      }
+      jointParameters2 JointParameters {
+        axis 0 1 0
+      }
+      device [
+        PositionSensor {
+        }
+        RotationalMotor {
+          name "Hinge::Left"
+        }
+      ]
+      device2 [
+        RotationalMotor {
+          name "wheel1"
+          acceleration 10
+        }
+      ]
+      endPoint Solid {
+        translation 0.3 0.200013 6.25376e-06
+        rotation -0.9999999999998703 3.6017160923176615e-07 3.600572460773594e-07 4.712071375380367
+        children [
+          DEF Wheel Shape {
+            appearance Rubber {
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.15
+            }
+          }
+        ]
+        name "wheel1(1)"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    Hinge2Joint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.3 -0.15 0
+      }
+      jointParameters2 JointParameters {
+        axis 0 1 0
+      }
+      device [
+        PositionSensor {
+        }
+        RotationalMotor {
+          name "Hinge::Right"
+        }
+      ]
+      device2 [
+        RotationalMotor {
+          name "wheel2"
+          acceleration 10
+        }
+      ]
+      endPoint Solid {
+        translation 0.3 -0.200028 6.25377e-06
+        rotation -0.9999999999998701 -3.6027964521334963e-07 -3.6040325946678375e-07 4.712732064457682
+        children [
+          USE Wheel
+        ]
+        name "wheel2(1)"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.3 0.15 0
+      }
+      device [
+        PositionSensor {
+        }
+      ]
+      endPoint Solid {
+        translation -0.3 0.2 6.25375e-06
+        rotation -0.9999999999998702 3.600779543699467e-07 3.6036470962693595e-07 4.71318499527096
+        children [
+          USE Wheel
+        ]
+        name "wheel3"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.3 -0.15 0
+      }
+      device [
+        PositionSensor {
+        }
+      ]
+      endPoint Solid {
+        translation -0.3 -0.200013 6.25376e-06
+        rotation -0.9999999999998701 -3.601716354911138e-07 -3.6045866320016834e-07 4.713185619167475
+        children [
+          USE Wheel
+        ]
+        name "wheel4"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    DEF Hull Shape {
+      appearance GalvanizedMetal {
+      }
+      geometry Box {
+        size 1 0.3 0.15
+      }
+    }
+  ]
+  name "robot_hinge"
+  boundingObject USE Hull
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "SimpleVechicle-Hinges"
+}
+Robot {
+  translation 0.3 -1.35 0.35
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.15 0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+          acceleration 10
+          maxTorque 100
+        }
+        PositionSensor {
+        }
+      ]
+      endPoint Solid {
+        translation -0.15 0.200013 6.25376e-06
+        rotation -0.9999999999998703 3.6017160923176615e-07 3.600572460773594e-07 4.712071375380367
+        children [
+          DEF Wheel Shape {
+            appearance Rubber {
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.15
+            }
+          }
+        ]
+        name "wheel1"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.15 -0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+          acceleration 10
+          maxTorque 100
+        }
+        PositionSensor {
+        }
+      ]
+      endPoint Solid {
+        translation -0.15 -0.200028 6.25377e-06
+        rotation -0.9999999999998701 -3.602796452133496e-07 -3.6040325946678386e-07 4.712732064457682
+        children [
+          USE Wheel
+        ]
+        name "wheel2"
+        boundingObject USE Wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    Pose {
+      translation 0.15 0 -0.05
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        Hinge2Joint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+          }
+          jointParameters2 JointParameters {
+            axis 0 1 0
+          }
+          endPoint Solid {
+            rotation 0.9999999999991639 -1.2931999999989185e-06 -7.192349999993986e-09 1.569995307180423
+            children [
+              DEF wheelie Shape {
+                appearance Rubber {
+                }
+                geometry Cylinder {
+                  height 0.05
+                  radius 0.1
+                }
+              }
+            ]
+            name "wheel3(2)"
+            boundingObject USE wheelie
+            physics Physics {
+              density -1
+              mass 0.5
+            }
+          }
+        }
+      ]
+    }
+    DEF Hull2 Shape {
+      appearance GalvanizedMetal {
+      }
+      geometry Box {
+        size 0.5 0.3 0.1
+      }
+    }
+  ]
+  name "robot_roomba"
+  boundingObject USE Hull2
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "SimpleVechicle-Roomba"
+}
