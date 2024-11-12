@@ -1,0 +1,1173 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Asphalt.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.07479440699785475 0.07127701893249777 0.9946483716640446 1.6243437265132543
+  position 1.841867812937344 -12.922056895940282 3.676808189630708
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 20 20
+}
+DEF TTT Robot {
+  translation 0 0 1.375
+  rotation 1 0 0 1.5708
+  children [
+    SliderJoint {
+      jointParameters JointParameters {
+        maxStop 1.375
+      }
+      device [
+        LinearMotor {
+          name "jointY"
+          maxForce 100
+        }
+      ]
+      endPoint Solid {
+        translation 0 0 0.25
+        rotation 0 1 0 1.5708
+        children [
+          SliderJoint {
+            jointParameters JointParameters {
+              maxStop 1.38
+            }
+            device [
+              LinearMotor {
+                name "jointX"
+                maxForce 100
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 0.25
+              children [
+                SliderJoint {
+                  jointParameters JointParameters {
+                    axis 0 -1 0
+                    maxStop 1.38
+                  }
+                  device [
+                    LinearMotor {
+                      name "jointZ"
+                      maxForce 100
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 -0.25 0
+                    rotation -0.999998244908615 6.808948858884196e-06 0.0018735349816844673 4.444838737743337e-08
+                    children [
+                      Pose {
+                        translation 0 0.185 0
+                        rotation 0.5773509358560258 -0.577349935856137 -0.577349935856137 2.09439
+                        children [
+                          DEF GRIPPER_BASE Solid {
+                            children [
+                              DEF LIFT_SLIDER SliderJoint {
+                                jointParameters JointParameters {
+                                  axis 0 0 -1
+                                }
+                                device [
+                                  LinearMotor {
+                                    name "lift motor"
+                                    minPosition -0.05
+                                    maxPosition 0.05
+                                  }
+                                ]
+                                endPoint DEF LIFT Solid {
+                                  translation 0.0425 0 0
+                                  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+                                  children [
+                                    DEF LEFT_FINGER_SLIDER SliderJoint {
+                                      jointParameters JointParameters {
+                                        axis -1 0 0
+                                      }
+                                      device [
+                                        LinearMotor {
+                                          name "finger motor::left"
+                                          maxPosition 0.1
+                                        }
+                                      ]
+                                      endPoint DEF LEFT_FINGER Solid {
+                                        translation -0.022 0 -0.02
+                                        children [
+                                          Group {
+                                            children [
+                                              Pose {
+                                                translation 0 0.0015 -0.003
+                                                children [
+                                                  Shape {
+                                                    appearance DEF METAL_APPEARANCE PBRAppearance {
+                                                      baseColorMap ImageTexture {
+                                                        url [
+                                                          "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/metal.jpg"
+                                                        ]
+                                                      }
+                                                      roughness 0.2
+                                                    }
+                                                    geometry Box {
+                                                      size 0.018 0.031 0.036
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                              DEF LEFT_FINGER_TRANSFORM Pose {
+                                                translation 0.0015 -0.006 -0.069
+                                                children [
+                                                  Shape {
+                                                    appearance DEF BLACK_APPEARANCE PBRAppearance {
+                                                      baseColor 0.0705882 0.0705882 0.0705882
+                                                      roughness 0.4
+                                                      metalness 0
+                                                    }
+                                                    geometry Box {
+                                                      size 0.015 0.035 0.095
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                        name "left finger"
+                                        boundingObject USE LEFT_FINGER_TRANSFORM
+                                        physics DEF LEFT_FINGER_PHYSICS Physics {
+                                        }
+                                      }
+                                    }
+                                    DEF RIGHT_FINGER_SLIDER SliderJoint {
+                                      jointParameters JointParameters {
+                                        axis 1 0 0
+                                      }
+                                      device [
+                                        LinearMotor {
+                                          name "finger motor::right"
+                                          maxPosition 0.1
+                                        }
+                                      ]
+                                      endPoint DEF RIGHT_FINGER Solid {
+                                        translation 0.022 0 -0.02
+                                        children [
+                                          Group {
+                                            children [
+                                              Pose {
+                                                translation 0 0.0015 -0.003
+                                                children [
+                                                  Shape {
+                                                    appearance USE METAL_APPEARANCE
+                                                    geometry Box {
+                                                      size 0.018 0.031 0.036
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                              DEF RIGHT_FINGER_TRANSFORM Pose {
+                                                translation -0.0015 -0.006 -0.069
+                                                children [
+                                                  Shape {
+                                                    appearance USE BLACK_APPEARANCE
+                                                    geometry Box {
+                                                      size 0.015 0.035 0.095
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                        name "right finger"
+                                        boundingObject USE RIGHT_FINGER_TRANSFORM
+                                        physics USE LEFT_FINGER_PHYSICS
+                                      }
+                                    }
+                                    Pose {
+                                      translation 0 -0.126 0.135
+                                      children [
+                                        Group {
+                                          children [
+                                            Pose {
+                                              translation 0 0.1478 -0.154
+                                              children [
+                                                DEF UPPER_BOX Shape {
+                                                  appearance USE BLACK_APPEARANCE
+                                                  geometry Box {
+                                                    size 0.315 0.01 0.043419
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Pose {
+                                              translation 0 0.1072 -0.154
+                                              children [
+                                                USE UPPER_BOX
+                                              ]
+                                            }
+                                            Pose {
+                                              translation -0.155 0.1275 -0.154
+                                              children [
+                                                DEF LEFT_BOX Shape {
+                                                  appearance USE BLACK_APPEARANCE
+                                                  geometry Box {
+                                                    size 0.007 0.05 0.042227
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Pose {
+                                              translation 0.155 0.1275 -0.154
+                                              children [
+                                                USE LEFT_BOX
+                                              ]
+                                            }
+                                            Pose {
+                                              translation 0 0.126 -0.158
+                                              children [
+                                                DEF CENTER_BOX Shape {
+                                                  appearance USE BLACK_APPEARANCE
+                                                  geometry Box {
+                                                    size 0.027 0.0341 0.035
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Pose {
+                                              translation 0 0.132 -0.154
+                                              rotation -0.5773489358556708 -0.5773509358554485 0.5773509358554485 2.094397
+                                              children [
+                                                DEF UPPER_CYLINDER Shape {
+                                                  appearance USE METAL_APPEARANCE
+                                                  geometry Cylinder {
+                                                    height 0.3
+                                                    radius 0.00225
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Pose {
+                                              translation 0 0.118 -0.154
+                                              rotation -0.5773489358556708 -0.5773509358554485 0.5773509358554485 2.094397
+                                              children [
+                                                Shape {
+                                                  appearance USE METAL_APPEARANCE
+                                                  geometry Cylinder {
+                                                    height 0.3
+                                                    radius 0.00125
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Pose {
+                                              translation -0.041 0.155 -0.148
+                                              children [
+                                                Shape {
+                                                  appearance USE BLACK_APPEARANCE
+                                                  geometry Box {
+                                                    size 0.0141907 0.006 0.04
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Pose {
+                                              translation -0.036 0.145 -0.116
+                                              children [
+                                                Shape {
+                                                  appearance USE METAL_APPEARANCE
+                                                  geometry Box {
+                                                    size 0.027 0.03 0.03
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Pose {
+                                              translation 0.041 0.155 -0.148
+                                              children [
+                                                Shape {
+                                                  appearance USE BLACK_APPEARANCE
+                                                  geometry Box {
+                                                    size 0.0141907 0.006 0.04
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Pose {
+                                              translation 0.036 0.145 -0.116
+                                              children [
+                                                Shape {
+                                                  appearance USE METAL_APPEARANCE
+                                                  geometry Box {
+                                                    size 0.027 0.03 0.03
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                  boundingObject Pose {
+                                    translation 0 0.0015 -0.019
+                                    children [
+                                      Shape {
+                                        appearance USE METAL_APPEARANCE
+                                        geometry Box {
+                                          size 0.315 0.05 0.045
+                                        }
+                                      }
+                                    ]
+                                  }
+                                  physics DEF LIFT_PHYSICS Physics {
+                                  }
+                                }
+                              }
+                              Pose {
+                                translation -0.135 0 -0.126
+                                rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+                                children [
+                                  DEF BASE_SHAPE_GROUP Group {
+                                    children [
+                                      Pose {
+                                        translation 0 0.176 -0.154
+                                        children [
+                                          DEF UPPER_BOX Shape {
+                                            appearance USE BLACK_APPEARANCE
+                                            geometry Box {
+                                              size 0.141092 0.0170038 0.043419
+                                            }
+                                          }
+                                        ]
+                                      }
+                                      Pose {
+                                        translation 0 0.075 -0.154
+                                        children [
+                                          USE UPPER_BOX
+                                        ]
+                                      }
+                                      Pose {
+                                        translation -0.06 0.126 -0.158
+                                        children [
+                                          DEF LEFT_BOX Shape {
+                                            appearance USE BLACK_APPEARANCE
+                                            geometry Box {
+                                              size 0.02 0.0875 0.035
+                                            }
+                                          }
+                                        ]
+                                      }
+                                      Pose {
+                                        translation 0.06 0.126 -0.158
+                                        children [
+                                          USE LEFT_BOX
+                                        ]
+                                      }
+                                      Pose {
+                                        translation 0 0.126 -0.158
+                                        children [
+                                          DEF CENTER_BOX Shape {
+                                            appearance USE BLACK_APPEARANCE
+                                            geometry Box {
+                                              size 0.044 0.1 0.0315
+                                            }
+                                          }
+                                        ]
+                                      }
+                                      Pose {
+                                        translation -0.037 0.126 -0.158
+                                        rotation 1 0 0 -1.570796
+                                        children [
+                                          DEF LEFT_CYLINDER Shape {
+                                            appearance USE METAL_APPEARANCE
+                                            geometry Cylinder {
+                                              height 0.1
+                                              radius 0.003
+                                            }
+                                          }
+                                        ]
+                                      }
+                                      Pose {
+                                        translation 0.037 0.126 -0.158
+                                        rotation 1 0 0 -1.570796
+                                        children [
+                                          USE LEFT_CYLINDER
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                            name "Pioneer3 gripper"
+                            model "Pioneer3 gripper"
+                            boundingObject Pose {
+                              translation 0.019 0 0
+                              children [
+                                Box {
+                                  size 0.043 0.141 0.117
+                                }
+                              ]
+                            }
+                            physics DEF BASE_PHYSICS Physics {
+                            }
+                          }
+                        ]
+                      }
+                      Pose {
+                        translation 0 0.9 0
+                        rotation 1 0 0 1.5708
+                        children [
+                          Shape {
+                            appearance Asphalt {
+                            }
+                            geometry Cylinder {
+                              height 1.5
+                              radius 0.02
+                            }
+                          }
+                        ]
+                      }
+                      DEF Tool Pose {
+                        translation 0 1.53 0.01
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              baseColor 1 0.0313726 0.207843
+                              roughness 1
+                              metalness 0
+                            }
+                            geometry Sphere {
+                              radius 0.12
+                              subdivision 3
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                    boundingObject USE Tool
+                    physics Physics {
+                    }
+                  }
+                }
+                DEF P3 Group {
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry Box {
+                        size 0.25 0.25 0.25
+                      }
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE P3
+              physics Physics {
+              }
+            }
+          }
+          DEF J1 Group {
+            children [
+              Pose {
+                translation 0 0 0.875
+                children [
+                  Shape {
+                    appearance Asphalt {
+                    }
+                    geometry Cylinder {
+                      height 1.5
+                      radius 0.02
+                    }
+                  }
+                ]
+              }
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 1 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.25 0.25 0.25
+                }
+              }
+            ]
+          }
+        ]
+        boundingObject USE J1
+        physics Physics {
+        }
+      }
+    }
+    DEF Base Group {
+      children [
+        Pose {
+          translation 0 0 0.875
+          children [
+            Shape {
+              appearance Asphalt {
+              }
+              geometry Cylinder {
+                height 1.5
+                radius 0.02
+              }
+            }
+          ]
+        }
+        Pose {
+          translation 0 -0.625 0
+          rotation 1 0 0 -1.5707953071795862
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.0588235 0.529412 0.309804
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.25 0.25 1.5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "TTT"
+  controller "ikpy2"
+  supervisor TRUE
+}
+DEF RRR_pointer Solid {
+  translation 3.51 0 0.22
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.243137 1
+      }
+      geometry Sphere {
+        radius 0.05
+      }
+    }
+  ]
+  name "solid(1)"
+}
+DEF TTT_pointer Solid {
+  translation 0.34 0 0.22
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.243137 1
+      }
+      geometry Sphere {
+        radius 0.05
+      }
+    }
+  ]
+  name "solid(2)"
+}
+Solid {
+  translation 0.66865 -1.0938 0.0563526
+  children [
+    DEF box Shape {
+      appearance USE BLACK_APPEARANCE
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  boundingObject USE box
+  physics Physics {
+  }
+}
+DEF RRR Robot {
+  translation 4 0 0.5
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      device [
+        RotationalMotor {
+          name "base"
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation 0 0 0.5
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+            }
+            device [
+              RotationalMotor {
+                name "J1"
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              rotation 1 0 0 0
+              children [
+                DEF J2 Pose {
+                  children [
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        anchor 0 0 0.75
+                      }
+                      device [
+                        RotationalMotor {
+                          name "J2"
+                          maxTorque 100
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 0 0 0.75
+                        rotation 1 0 0 0
+                        children [
+                          HingeJoint {
+                            jointParameters HingeJointParameters {
+                              axis 0 0 1
+                              anchor 0 0 0.75
+                            }
+                            device [
+                              RotationalMotor {
+                                name "J3"
+                                maxTorque 100
+                              }
+                            ]
+                            endPoint Solid {
+                              translation 0 0 0.75
+                              children [
+                                Group {
+                                  children [
+                                    Pose {
+                                      translation -7.59216e-07 -2.83646e-07 0.05
+                                      rotation 0.5773529358506075 -0.5773469358512743 0.5773509358508296 2.09439
+                                      children [
+                                        DEF GRIPPER_BASE Solid {
+                                          children [
+                                            DEF LIFT_SLIDER SliderJoint {
+                                              jointParameters JointParameters {
+                                                axis 0 0 -1
+                                              }
+                                              device [
+                                                LinearMotor {
+                                                  name "lift motor"
+                                                  minPosition -0.05
+                                                  maxPosition 0.05
+                                                }
+                                              ]
+                                              endPoint DEF LIFT Solid {
+                                                translation 0.04247733588672764 7.695051849054835e-07 8.684008261259719e-08
+                                                rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 -2.094395307179586
+                                                children [
+                                                  DEF LEFT_FINGER_SLIDER SliderJoint {
+                                                    jointParameters JointParameters {
+                                                      axis -1 0 0
+                                                    }
+                                                    device [
+                                                      LinearMotor {
+                                                        name "finger motor::left"
+                                                        maxPosition 0.1
+                                                      }
+                                                    ]
+                                                    endPoint DEF LEFT_FINGER Solid {
+                                                      translation -0.022 0 -0.02
+                                                      children [
+                                                        Group {
+                                                          children [
+                                                            Pose {
+                                                              translation 0 0.0015 -0.003
+                                                              children [
+                                                                Shape {
+                                                                  appearance DEF METAL_APPEARANCE PBRAppearance {
+                                                                    baseColorMap ImageTexture {
+                                                                      url [
+                                                                        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/metal.jpg"
+                                                                      ]
+                                                                    }
+                                                                    roughness 0.2
+                                                                  }
+                                                                  geometry Box {
+                                                                    size 0.018 0.031 0.036
+                                                                  }
+                                                                }
+                                                              ]
+                                                            }
+                                                            DEF LEFT_FINGER_TRANSFORM Pose {
+                                                              translation 0.0015 -0.006 -0.069
+                                                              children [
+                                                                Shape {
+                                                                  appearance DEF BLACK_APPEARANCE PBRAppearance {
+                                                                    baseColor 0.0705882 0.0705882 0.0705882
+                                                                    roughness 0.4
+                                                                    metalness 0
+                                                                  }
+                                                                  geometry Box {
+                                                                    size 0.015 0.035 0.095
+                                                                  }
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                      name "left finger"
+                                                      boundingObject USE LEFT_FINGER_TRANSFORM
+                                                      physics DEF LEFT_FINGER_PHYSICS Physics {
+                                                      }
+                                                    }
+                                                  }
+                                                  DEF RIGHT_FINGER_SLIDER SliderJoint {
+                                                    jointParameters JointParameters {
+                                                      axis 1 0 0
+                                                    }
+                                                    device [
+                                                      LinearMotor {
+                                                        name "finger motor::right"
+                                                        maxPosition 0.1
+                                                      }
+                                                    ]
+                                                    endPoint DEF RIGHT_FINGER Solid {
+                                                      translation 0.022 0 -0.02
+                                                      children [
+                                                        Group {
+                                                          children [
+                                                            Pose {
+                                                              translation 0 0.0015 -0.003
+                                                              children [
+                                                                Shape {
+                                                                  appearance USE METAL_APPEARANCE
+                                                                  geometry Box {
+                                                                    size 0.018 0.031 0.036
+                                                                  }
+                                                                }
+                                                              ]
+                                                            }
+                                                            DEF RIGHT_FINGER_TRANSFORM Pose {
+                                                              translation -0.0015 -0.006 -0.069
+                                                              children [
+                                                                Shape {
+                                                                  appearance USE BLACK_APPEARANCE
+                                                                  geometry Box {
+                                                                    size 0.015 0.035 0.095
+                                                                  }
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                      name "right finger"
+                                                      boundingObject USE RIGHT_FINGER_TRANSFORM
+                                                      physics USE LEFT_FINGER_PHYSICS
+                                                    }
+                                                  }
+                                                  Pose {
+                                                    translation 0 -0.126 0.135
+                                                    children [
+                                                      Group {
+                                                        children [
+                                                          Pose {
+                                                            translation 0 0.1478 -0.154
+                                                            children [
+                                                              DEF UPPER_BOX Shape {
+                                                                appearance USE BLACK_APPEARANCE
+                                                                geometry Box {
+                                                                  size 0.315 0.01 0.043419
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation 0 0.1072 -0.154
+                                                            children [
+                                                              USE UPPER_BOX
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation -0.155 0.1275 -0.154
+                                                            children [
+                                                              DEF LEFT_BOX Shape {
+                                                                appearance USE BLACK_APPEARANCE
+                                                                geometry Box {
+                                                                  size 0.007 0.05 0.042227
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation 0.155 0.1275 -0.154
+                                                            children [
+                                                              USE LEFT_BOX
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation 0 0.126 -0.158
+                                                            children [
+                                                              DEF CENTER_BOX Shape {
+                                                                appearance USE BLACK_APPEARANCE
+                                                                geometry Box {
+                                                                  size 0.027 0.0341 0.035
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation 0 0.132 -0.154
+                                                            rotation -0.5773489358556708 -0.5773509358554485 0.5773509358554485 2.094397
+                                                            children [
+                                                              DEF UPPER_CYLINDER Shape {
+                                                                appearance USE METAL_APPEARANCE
+                                                                geometry Cylinder {
+                                                                  height 0.3
+                                                                  radius 0.00225
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation 0 0.118 -0.154
+                                                            rotation -0.5773489358556708 -0.5773509358554485 0.5773509358554485 2.094397
+                                                            children [
+                                                              Shape {
+                                                                appearance USE METAL_APPEARANCE
+                                                                geometry Cylinder {
+                                                                  height 0.3
+                                                                  radius 0.00125
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation -0.041 0.155 -0.148
+                                                            children [
+                                                              Shape {
+                                                                appearance USE BLACK_APPEARANCE
+                                                                geometry Box {
+                                                                  size 0.0141907 0.006 0.04
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation -0.036 0.145 -0.116
+                                                            children [
+                                                              Shape {
+                                                                appearance USE METAL_APPEARANCE
+                                                                geometry Box {
+                                                                  size 0.027 0.03 0.03
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation 0.041 0.155 -0.148
+                                                            children [
+                                                              Shape {
+                                                                appearance USE BLACK_APPEARANCE
+                                                                geometry Box {
+                                                                  size 0.0141907 0.006 0.04
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                          Pose {
+                                                            translation 0.036 0.145 -0.116
+                                                            children [
+                                                              Shape {
+                                                                appearance USE METAL_APPEARANCE
+                                                                geometry Box {
+                                                                  size 0.027 0.03 0.03
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                                boundingObject Pose {
+                                                  translation 0 0.0015 -0.019
+                                                  children [
+                                                    Shape {
+                                                      appearance USE METAL_APPEARANCE
+                                                      geometry Box {
+                                                        size 0.315 0.05 0.045
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                                physics DEF LIFT_PHYSICS Physics {
+                                                }
+                                              }
+                                            }
+                                            Pose {
+                                              translation -0.135 0 -0.126
+                                              rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+                                              children [
+                                                DEF BASE_SHAPE_GROUP Group {
+                                                  children [
+                                                    Pose {
+                                                      translation 0 0.176 -0.154
+                                                      children [
+                                                        DEF UPPER_BOX Shape {
+                                                          appearance USE BLACK_APPEARANCE
+                                                          geometry Box {
+                                                            size 0.141092 0.0170038 0.043419
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                    Pose {
+                                                      translation 0 0.075 -0.154
+                                                      children [
+                                                        USE UPPER_BOX
+                                                      ]
+                                                    }
+                                                    Pose {
+                                                      translation -0.06 0.126 -0.158
+                                                      children [
+                                                        DEF LEFT_BOX Shape {
+                                                          appearance USE BLACK_APPEARANCE
+                                                          geometry Box {
+                                                            size 0.02 0.0875 0.035
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                    Pose {
+                                                      translation 0.06 0.126 -0.158
+                                                      children [
+                                                        USE LEFT_BOX
+                                                      ]
+                                                    }
+                                                    Pose {
+                                                      translation 0 0.126 -0.158
+                                                      children [
+                                                        DEF CENTER_BOX Shape {
+                                                          appearance USE BLACK_APPEARANCE
+                                                          geometry Box {
+                                                            size 0.044 0.1 0.0315
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                    Pose {
+                                                      translation -0.037 0.126 -0.158
+                                                      rotation 1 0 0 -1.570796
+                                                      children [
+                                                        DEF LEFT_CYLINDER Shape {
+                                                          appearance USE METAL_APPEARANCE
+                                                          geometry Cylinder {
+                                                            height 0.1
+                                                            radius 0.003
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                    Pose {
+                                                      translation 0.037 0.126 -0.158
+                                                      rotation 1 0 0 -1.570796
+                                                      children [
+                                                        USE LEFT_CYLINDER
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                          name "Pioneer3 gripper"
+                                          model "Pioneer3 gripper"
+                                          boundingObject Pose {
+                                            translation 0.019 0 0
+                                            children [
+                                              Box {
+                                                size 0.043 0.141 0.117
+                                              }
+                                            ]
+                                          }
+                                          physics DEF BASE_PHYSICS Physics {
+                                          }
+                                        }
+                                      ]
+                                    }
+                                    DEF J3 Pose {
+                                      translation 0 0 0.025
+                                      children [
+                                        Shape {
+                                          appearance DEF J3app PBRAppearance {
+                                            baseColor 0.733333 0.52549 0.0352941
+                                          }
+                                          geometry Cylinder {
+                                            height 0.05
+                                            radius 0.1
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                              boundingObject USE J3
+                              physics Physics {
+                              }
+                            }
+                          }
+                          DEF J3 Group {
+                            children [
+                              Pose {
+                                translation -1.01961e-06 0 5.19723e-15
+                                rotation 0 1 0 -1.5707953071795862
+                                children [
+                                  Shape {
+                                    appearance DEF J3app PBRAppearance {
+                                      baseColor 0 0.333333 0
+                                    }
+                                    geometry Cylinder {
+                                      height 0.2
+                                      radius 0.1
+                                    }
+                                  }
+                                ]
+                              }
+                              Pose {
+                                translation -6.59756e-07 0 0.7
+                                rotation 0 1 0 1.01503e-06
+                                children [
+                                  Shape {
+                                    appearance DEF J3app PBRAppearance {
+                                      baseColor 0 0.333333 0
+                                    }
+                                    geometry Cylinder {
+                                      height 0.1
+                                      radius 0.1
+                                    }
+                                  }
+                                ]
+                              }
+                              Pose {
+                                translation 1.92835e-07 0 0.325
+                                rotation 0 1 0 1.01503e-06
+                                children [
+                                  Shape {
+                                    appearance DEF J3app PBRAppearance {
+                                      baseColor 0 0.333333 0
+                                    }
+                                    geometry Cylinder {
+                                      height 0.65
+                                      radius 0.05
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                        boundingObject USE J3
+                        physics Physics {
+                          density -1
+                          mass 1
+                        }
+                      }
+                    }
+                    DEF J2_Shape Group {
+                      children [
+                        Pose {
+                          translation 0.2 0 0.75
+                          rotation 0 1 0 -1.5707953071795862
+                          children [
+                            Shape {
+                              appearance DEF J2app PBRAppearance {
+                                baseColor 0.92549 1 0.12549
+                              }
+                              geometry Cylinder {
+                                height 0.2
+                                radius 0.1
+                              }
+                            }
+                          ]
+                        }
+                        Pose {
+                          translation 0.2 0 0.375
+                          rotation 0 1 0 -1.5707953071795862
+                          children [
+                            Shape {
+                              appearance DEF J2app PBRAppearance {
+                                baseColor 0.92549 1 0.12549
+                              }
+                              geometry Box {
+                                size 0.75 0.1 0.1
+                              }
+                            }
+                          ]
+                        }
+                        Pose {
+                          translation 0.2 0 0
+                          rotation 0 1 0 -1.5707953071795862
+                          children [
+                            Shape {
+                              appearance DEF J2app PBRAppearance {
+                                baseColor 0.92549 1 0.12549
+                              }
+                              geometry Cylinder {
+                                height 0.2
+                                radius 0.1
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE J2_Shape
+              physics Physics {
+                density -1
+                mass 1
+              }
+            }
+          }
+          DEF J1 Pose {
+            rotation 0 1 0 -1.5707953071795862
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0.0745098 0.47451
+                }
+                geometry Cylinder {
+                  height 0.2
+                  radius 0.1
+                }
+              }
+            ]
+          }
+        ]
+        name "J1"
+        boundingObject USE J1
+        physics Physics {
+        }
+      }
+    }
+    DEF base Shape {
+      appearance USE BLACK_APPEARANCE
+      geometry Cylinder {
+        height 1
+        radius 0.15
+      }
+    }
+  ]
+  name "RRR"
+  boundingObject USE base
+  controller "ikpyRRR"
+  supervisor TRUE
+}
